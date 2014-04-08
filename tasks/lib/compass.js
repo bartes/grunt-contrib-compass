@@ -147,7 +147,11 @@ exports.init = function (grunt) {
     if (options.bundleExec) {
       args.unshift('bundle', 'exec');
     }
-
+    
+    if (options.rvm) {
+      args.unshift(options.rvm.path, options.rvm.version, 'do');
+    }
+    
     if (options.basePath) {
       args.push(options.basePath);
     }
@@ -171,6 +175,7 @@ exports.init = function (grunt) {
       'raw',
       'clean',
       'bundleExec',
+      'rvm',
       'basePath',
       'specify',
       'watch'
