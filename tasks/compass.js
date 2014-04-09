@@ -12,13 +12,15 @@ module.exports = function (grunt) {
   var compass = require('./lib/compass').init(grunt);
 
   function compile(args, cb) {
+    var cmd = args.shift();
     var child = grunt.util.spawn({
-      cmd: args.shift(),
+      cmd: cmd,
       args: args
     }, function (err, result, code) {
       if (code === 127) {
         grunt.warn(
           "Comapass compile faild with cmd: " + cmd + ", and args: " + args.toString() + ". " +
+          "and returned " + result.toString() + " and code " + code + " . " +
           'You need to have Ruby and Compass installed ' +
           'and in your system PATH for this task to work. ' +
           'More info: https://github.com/gruntjs/grunt-contrib-compass'
